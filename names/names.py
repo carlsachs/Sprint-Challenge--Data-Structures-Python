@@ -13,13 +13,15 @@ f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
 # grab the first name to start tree
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+bst = BSTNode(names_1[0])
+# insert the rest from first file into the tree
+for name in names_1[1:]:
+    bst.insert(name)
+for name in names_2:
+    if bst.contains(name):
+        duplicates.append(name)
 
 end_time = time.time()
-
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print(f"runtime: {end_time - start_time} seconds")
 
